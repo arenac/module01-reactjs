@@ -14,8 +14,16 @@ function App() {
       }); 
   },[]);
 
-  async function handleAddRepository() {
-    // TODO
+  function handleAddRepository() {
+    api.post('repositories', {
+      url: "https://github.com/arenac/module01-reactjs",
+      title: "Desafio ReactJS",
+      techs: ["React", "Node.js"],
+    }).then((response) => {
+      if(response.data) {
+        setRepos([...repos, response.data]);
+      }
+    });
   }
 
   async function handleRemoveRepository(id) {
